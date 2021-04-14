@@ -22,6 +22,7 @@
     "postpublish": "rm -fr build",
     "snyk-protect": "snyk protect",
     "prepare": "npm run snyk-protect"
+    "postinstall": "rm -fr build && tsc"
   },
   "repository": {
     "type": "git",
