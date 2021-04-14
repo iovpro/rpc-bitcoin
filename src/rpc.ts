@@ -2,7 +2,7 @@ import { RESTClient, RESTIniOptions } from "./rest";
 
 export type RPCIniOptions = RESTIniOptions & {
   user?: string;
-  pass: string;
+  pass?: string;
   wallet?: string;
   fullResponse?: boolean;
 };
@@ -399,7 +399,11 @@ export class RPCClient extends RESTClient {
     fullResponse,
     ...options
   }: RPCIniOptions) {
-    super({ ...options, auth: { user, pass }, uri: "/" });
+    const init = { ...options, uri: "/" };
+    if (pass) {
+      init.auth = { user, pass };
+    }
+    super(init);
     this.fullResponse = fullResponse ? true : false;
     this.wallet = typeof wallet === "string" ? wallet : undefined;
   }
