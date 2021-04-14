@@ -33,7 +33,9 @@ export class RESTClient extends RPC {
     timeout = 30000,
     ...options
   }: RESTIniOptions = {}) {
-    super({ ...options, baseUrl: `${url}:${port}`, timeout, json: true });
+    const init = { ...options, timeout, json: true };
+    if (!init.baseUrl) init.baseUrl = `${url}:${port}`
+    super(init);
   }
 
   /**
