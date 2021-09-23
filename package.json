@@ -21,7 +21,8 @@
     "prepublishOnly": "npm run prettier && npm run lint && npm run build && npm run prettier:build && npm run lint:build",
     "postpublish": "rm -fr build",
     "snyk-protect": "snyk protect",
-    "prepare": "npm run snyk-protect"
+    "prepare": "npm run snyk-protect",
+    "postinstall": "rm -fr build && tsc"
   },
   "repository": {
     "type": "git",
